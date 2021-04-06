@@ -11,5 +11,3 @@ export class Core extends createBase()<{ label: string }> {
     });
   }
 }
-
-export const core = new Core();
