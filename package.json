@@ -1,13 +1,17 @@
 {
   "name": "@ezy/svelte-makina",
   "version": "1.0.0",
-  "description": "Svelte bindings for Makina",
+  "description": "Official Svelte bindings for Makina",
   "main": "build/main/index.js",
   "types": "build/main/index.d.ts",
   "module": "build/module/index.js",
   "repository": "https://github.com/ezylean/svelte-makina",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "svelte",
+    "state",
+    "state management"
+  ],
   "scripts": {
     "build": "run-p build:*",
     "build:main": "tsc -p tsconfig.json --skipLibCheck",
