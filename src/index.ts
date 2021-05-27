@@ -1,8 +1,8 @@
-import { BaseConstructor } from '@ezy/makina';
+import { StateMachine } from '@ezy/makina';
 import { readable, Readable } from 'svelte/store';
 
 export function State<
-  SM extends InstanceType<BaseConstructor<any>>,
+  SM extends StateMachine,
   R = SM['state']
 >(sm: SM, selector: (state: SM['state']) => R = (state) => state): Readable<R> {
   return readable(selector(sm.state), (set) =>
