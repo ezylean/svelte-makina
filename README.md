@@ -12,39 +12,45 @@ npm i @ezy/svelte-makina
 
 ## Usage
 
-core.ts
+`counter.ts`
 ```ts
-import { createBase } from "@ezy/makina"
+import { createBase, Filterables } from '@ezy/makina';
+import "@ezy/svelte-makina"
 
-export interface CoreState {
-  label: string
-}
+class Counter extends createBase()<number> {
 
-export class Core extends createBase()<CoreState> {
-  constructor(initalState?: CoreState, IO?: never, options?: any) {
-    super({ label: 'a beautiful button', ...initalState }, IO, options);
+  constructor(initialState = 0) {
+    super(initialState);
   }
 
-  public changeLabel(text: string) {
-    this.commit('labelChanged', {
-      label: text
-    });
+  public get display() {
+    return `Times clicked: ${this.state}`;
+  }
+
+  public increment() {
+    this.commit('increment', this.state + 1);
+  }
+
+  public decrement() {
+    this.commit('decrement', this.state - 1);
   }
 }
 
-export const core = new Core() 
+const counter: Filterables<Counter> = Counter.create();
+
+export default counter;
 ```
 
-Button.svelte
+`Counter.svelte`
 ```html
-<script>
-  import { State } from "@ezy/svelte-makina"
-  import { core } from "./core"
-
-  export let label = State(core, state => state.label);
+<script lang="ts">
+	import counter from "./counter"
 </script>
 
-<button on:click={() => core.changeLabel("changed")}> {$label} </button>
+<h1>The count is {$counter.display}</h1>
+
+<button on:click={counter.increment}>+</button>
+<button on:click={counter.decrement}>-</button>
 ```
 
 ### On mutation
@@ -52,22 +58,7 @@ Button.svelte
 Svelte being based on mutation,
 you will pretty quickly run into mutating your app state directly from your components, which destroy the entire point of having a state machine.
 
-So, to avoid that kind of issues please consider using the selector option to create a copy of your state for your components.
-
-#### exemple
-```html
-<script>
-  import { State } from "@ezy/svelte-makina"
-  import copy from "fast-copy";
-  import { core } from "./core"
-
-  export let todos = State(core, state => copy(state.todos));
-</script>
-
-...
-```
-
-It also may be beneficial to freeze the state of your state machine, [see here](https://www.npmjs.com/package/@ezy/makina#immutable-state-guarantee).
+to avoid that kind of issues please consider to freeze the state of your state machine, [see here](https://www.npmjs.com/package/@ezy/makina#immutable-state-guarantee).
 
 ## Links
 
