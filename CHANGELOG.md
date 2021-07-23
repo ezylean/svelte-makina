@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/ezylean/svelte-makina/compare/v1.0.2...v2.0.0) (2021-07-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **general:** everything
+
+### Features
+
+* **general:** complete rewrite ([6f19ccf](https://github.com/ezylean/svelte-makina/commit/6f19ccf5207c0634d1567814ea795daba44a8c4d))
+
 ### [1.0.2](https://github.com/ezylean/svelte-makina/compare/v1.0.1...v1.0.2) (2021-05-27)
 
 ### [1.0.1](https://github.com/ezylean/svelte-makina/compare/v1.0.0...v1.0.1) (2021-04-06)
