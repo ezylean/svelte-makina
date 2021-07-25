@@ -1,6 +1,6 @@
 import {
-  config,
   Filterables,
+  install,
   StateContainer,
   StateContainerClass,
 } from '@ezy/makina';
@@ -17,13 +17,16 @@ declare module '@ezy/makina' {
   }
 }
 
-config.plugins.svelte = () => (Base: StateContainerClass) => {
-  return class extends Base {
-    public subscribe(
-      listener: (stateMachine: Filterables<Omit<this, 'subscribe'>>) => void
-    ): () => boolean {
-      listener(this as Filterables<this>);
-      return this.onStateChange(() => listener(this as Filterables<this>));
-    }
-  } as any;
-};
+install({
+  name: 'svelte',
+  decoratorFactory: () => (Base: StateContainerClass) => {
+    return class extends Base {
+      public subscribe(
+        listener: (stateMachine: Filterables<Omit<this, 'subscribe'>>) => void
+      ): () => boolean {
+        listener(this as Filterables<this>);
+        return this.onStateChange(() => listener(this as Filterables<this>));
+      }
+    } as any;
+  },
+});

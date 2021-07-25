@@ -41,7 +41,7 @@
     "node": ">=10"
   },
   "devDependencies": {
-    "@ezy/makina": "^7.0.0",
+    "@ezy/makina": "^7.0.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@testing-library/svelte": "^3.0.3",
     "@types/jest": "^26.0.22",
